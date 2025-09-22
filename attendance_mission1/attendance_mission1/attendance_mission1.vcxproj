@@ -130,6 +130,7 @@
     <ClCompile Include="attendance.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="attendance_umar.txt" />
     <Text Include="attendance_weekday_500.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

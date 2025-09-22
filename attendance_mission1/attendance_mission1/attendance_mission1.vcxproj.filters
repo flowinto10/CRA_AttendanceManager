@@ -26,5 +26,6 @@
     <Text Include="attendance_weekday_500.txt">
       <Filter>Data</Filter>
     </Text>
+    <Text Include="attendance_umar.txt" />
   </ItemGroup>
 </Project>
