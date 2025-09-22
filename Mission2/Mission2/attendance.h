@@ -10,6 +10,19 @@
 
 using namespace std;
 
+class InterfaceGrade {
+public:
+	virtual string getGrade(void) = 0;
+};
+
+class Grade : public InterfaceGrade {
+public:
+	Grade();
+	string getGrade() { return gradeName; };
+private:
+	string gradeName;
+};
+
 struct Player {
 	std::string name;
 	int id;
