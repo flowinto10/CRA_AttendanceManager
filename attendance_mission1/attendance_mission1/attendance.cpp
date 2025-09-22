@@ -82,14 +82,32 @@ void input2(string w, string wk) {
 	points[id2] += add_point;
 }
 
-void input() {
+bool IsRemovedPlayer(int playerId) {
+	return (grade[playerId] != 1 && grade[playerId] != 2 && wed[playerId] == 0 && weeken[playerId] == 0);
+}
+
+void PrintRemovedPlayer() {
+	std::cout << "\n";
+	std::cout << "Removed player\n";
+	std::cout << "==============\n";
+	for (int PlayerID = 1; PlayerID <= id_cnt; PlayerID++) {
+		if (IsRemovedPlayer(PlayerID) == true) {
+			std::cout << names[PlayerID] << "\n";
+		}
+	}
+}
+
+void ReadAttendanceData()
+{
 	ifstream fin{ "attendance_weekday_500.txt" }; //500개 데이터 입력
 	for (int i = 0; i < 500; i++) {
 		string t1, t2;
 		fin >> t1 >> t2;
 		input2(t1, t2);
 	}
+}
 
+void CalculateAttendancePoint() {
 	for (int i = 1; i <= id_cnt; i++) {
 		if (dat[i][2] > 9) {
 			points[i] += 10;
@@ -108,7 +126,11 @@ void input() {
 		else {
 			grade[i] = 0;
 		}
+	}
+}
 
+void GradeAttendant() {
+	for (int i = 1; i <= id_cnt; i++) {
 		cout << "NAME : " << names[i] << ", ";
 		cout << "POINT : " << points[i] << ", ";
 		cout << "GRADE : ";
@@ -123,18 +145,11 @@ void input() {
 			cout << "NORMAL" << "\n";
 		}
 	}
-
-	std::cout << "\n";
-	std::cout << "Removed player\n";
-	std::cout << "==============\n";
-	for (int i = 1; i <= id_cnt; i++) {
-
-		if (grade[i] != 1 && grade[i] != 2 && wed[i] == 0 && weeken[i] == 0) {
-			std::cout << names[i] << "\n";
-		}
-	}
 }
 
 int main() {
-	input();
+	ReadAttendanceData();
+	CalculateAttendancePoint();
+	GradeAttendant();
+	PrintRemovedPlayer();
 }
